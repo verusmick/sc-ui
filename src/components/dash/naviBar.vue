@@ -1,12 +1,11 @@
 <template>
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
-    </a>
+    <span class="logo-mini">
+      <a href="/">
+        <img src="/static/img/copilot-logo-white.svg" alt="Logo" class="img-responsive center-block logo">
+      </a>
+    </span>
 
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -278,3 +277,14 @@ export default {
 }
 
 </script>
+<style lang="scss">
+  .logo-mini,
+  .logo-lg {
+    text-align: left;
+
+    img {
+      padding: .4em !important;
+    }
+  }
+</style>
+
