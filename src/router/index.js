@@ -13,6 +13,7 @@ import APIExample from 'examples/APIExample'
 
 import Login from '../components/login/login.vue'
 import Dash from '../components/dash/dashboard.vue'
+import Users from '../components/users/users.vue'
 
 // UI Element Groups
 import General from 'pages/ui-elements/General.vue'
@@ -41,6 +42,15 @@ export default new Router({
       component: Dash,
       meta: {requiresAuth: true},
       children: [
+        {
+          path: '/users',
+          name: 'Users',
+          component: Users,
+          meta: {
+            labelName: 'Usuarios',
+            description: 'Overview of environment'
+          }
+        },
         {
           path: '/',
           name: 'Hello',
