@@ -10,6 +10,7 @@ import router from './router'
 import EventBus from './lib/eventBus.js'
 import axios from 'axios'
 
+Vue.use(require('vue-moment'))
 Vue.prototype.$bus = EventBus
 Vue.prototype.$http = axios
 
