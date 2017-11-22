@@ -1,45 +1,45 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="min-height: 550px;">
     <div>
-      <img class="logo" src="../assets/logo.png">
-      <button
-        id="myButton"
-        class="btn bg-maroon btn-flat margin"
-        @click="clickBtn"
-        :disabled="loading"
-        ><template v-if="loading">{{msgBye}}</template><template v-else>{{msgHello}}</template></button>
+      <img class="logo" src="../assets/logoTextura.png">
+      <!--<button-->
+        <!--id="myButton"-->
+        <!--class="btn bg-maroon btn-flat margin"-->
+        <!--@click="clickBtn"-->
+        <!--:disabled="loading"-->
+        <!--&gt;<template v-if="loading">{{msgBye}}</template><template v-else>{{msgHello}}</template></button>-->
     </div>
     <div>
-      <h1>Demo list</h1>
+      <h1>Bienvenidos - Demo list</h1>
 
-      <h3>Dashboard</h3>
-      <ul>
-        <li>헬로화면</li>
-        <li>샘플화면</li>
-        <li>Dashboard v1</li>
-        <li>Dashboard v2</li>
-        <li>InfoBox</li>
-        <li>Chart.js</li>
-        <li>Alert</li>
-        <li>Modal</li>
-        <li>APIExample</li>
-      </ul>
+      <!--<h3>Dashboard</h3>-->
+      <!--<ul>-->
+        <!--<li>헬로화면</li>-->
+        <!--<li>샘플화면</li>-->
+        <!--<li>Dashboard v1</li>-->
+        <!--<li>Dashboard v2</li>-->
+        <!--<li>InfoBox</li>-->
+        <!--<li>Chart.js</li>-->
+        <!--<li>Alert</li>-->
+        <!--<li>Modal</li>-->
+        <!--<li>APIExample</li>-->
+      <!--</ul>-->
 
-      <h3>Widgets</h3>
-      <ul>
-        <li>all</li>
-      </ul>
+      <!--<h3>Widgets</h3>-->
+      <!--<ul>-->
+        <!--<li>all</li>-->
+      <!--</ul>-->
 
-      <h3>UI Elements</h3>
-      <ul>
-        <li>General</li>
-        <li>Buttons</li>
-      </ul>
+      <!--<h3>UI Elements</h3>-->
+      <!--<ul>-->
+        <!--<li>General</li>-->
+        <!--<li>Buttons</li>-->
+      <!--</ul>-->
 
-      <h3>Forms</h3>
-      <ul>
-        <li>General Elements</li>
-      </ul>
+      <!--<h3>Forms</h3>-->
+      <!--<ul>-->
+        <!--<li>General Elements</li>-->
+      <!--</ul>-->
     </div>
   </div>
 </template>
@@ -83,5 +83,9 @@ li {
 
 a {
   color: #42b983;
+}
+.logo {
+  width: 30em;
+  padding: 6em;
 }
 </style>

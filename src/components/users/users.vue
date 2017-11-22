@@ -1,6 +1,6 @@
 <template>
   <!-- Content Wrapper. Contains page content -->
-  <div >
+  <div style="min-height: 850px;">
     <!---->
 
     <table>

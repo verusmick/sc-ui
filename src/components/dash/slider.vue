@@ -8,7 +8,7 @@
           <img src="/static/img/usuario.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ currentUser.name }}</p>
+          <p>{{ username }}</p>
           <a href="#"><i class="fa fa-circle" :style="`color:${currentUser.state.color}`"></i> {{ currentUser.state.name }}</a>
         </div>
       </div>
@@ -55,6 +55,11 @@ export default {
     slideMenuItems: {
       type: Array,
       default: []
+    }
+  },
+  data () {
+    return {
+      username: localStorage.getItem('usr')
     }
   },
   created () {
