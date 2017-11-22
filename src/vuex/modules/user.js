@@ -4,7 +4,7 @@ const state = {
     // position: 'Web Developer',
     state: {
       color: '#3c763d',
-      name: 'Online'
+      name: 'En linea'
     },
     createdAt: new Date()
   }
