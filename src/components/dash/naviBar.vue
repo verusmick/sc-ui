@@ -212,41 +212,41 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="~admin-lte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ currentUser.name }}</span>
+              <img src="/static/img/usuario.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">{{ username }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="~admin-lte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/static/img/usuario.png" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ currentUser.name }} - {{ currentUser.position }}
-                  <small>{{ currentUser.createdAt }}</small>
+                  {{ username }}
+                  <!--<small>{{ currentUser.createdAt }}</small>-->
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
-                <row>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </row>
-                <!-- /.row -->
-              </li>
+              <!--<li class="user-body">-->
+                <!--<row>-->
+                  <!--<div class="col-xs-4 text-center">-->
+                    <!--<a href="#">Followers</a>-->
+                  <!--</div>-->
+                  <!--<div class="col-xs-4 text-center">-->
+                    <!--<a href="#">Sales</a>-->
+                  <!--</div>-->
+                  <!--<div class="col-xs-4 text-center">-->
+                    <!--<a href="#">Friends</a>-->
+                  <!--</div>-->
+                <!--</row>-->
+                <!--&lt;!&ndash; /.row &ndash;&gt;-->
+              <!--</li>-->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat" disabled>Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a  class="btn btn-default btn-flat" @click="logout">Salir</a>
                 </div>
               </li>
             </ul>
@@ -263,6 +263,8 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import store from '../../vuex/store'
+import {HTTP} from '../../http-common'
 
 export default {
   name: 'va-navibar',
@@ -273,6 +275,21 @@ export default {
       'remainTasksCount',
       'currentUser'
     ])
+  },
+  data () {
+    return {
+      showModal: false,
+      username: localStorage.getItem('usr')
+    }
+  },
+  methods: {
+    logout () {
+      return HTTP.delete('auth/logout')
+        .then((response) => {
+          store.commit('LOGOUT_USER')
+        })
+        .catch((error) => Promise.reject(error.response))
+    }
   }
 }
 

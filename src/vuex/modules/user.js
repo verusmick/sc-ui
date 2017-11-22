@@ -1,7 +1,7 @@
 const state = {
   main: {
-    name: 'Alexander Pierce',
-    position: 'Web Developer',
+    name: localStorage.getItem('usr'),
+    // position: 'Web Developer',
     state: {
       color: '#3c763d',
       name: 'Online'
