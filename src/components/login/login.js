@@ -1,62 +1,48 @@
-// import api from '../api'
+import router from '../../router'
+import store from '../../vuex/store'
+
+import LoginService from './login.service'
+
 export default {
   name: 'Login',
-  data (router) {
+  data () {
     return {
-      section: 'Login',
-      loading: '',
       username: '',
       password: '',
-      response: ''
+      showPassword: false,
+      errors: {
+        emptyFields: false,
+        wrongFields: false
+      }
+    }
+  },
+  beforeCreate () {
+    if (store.state.isLogged) {
+      router.push('/')
     }
   },
   methods: {
-    checkCreds () {
-      const {username, password} = this
-      this.toggleLoading()
-      this.resetResponse()
-      this.$store.commit('TOGGLE_LOADING')
-      /* Making API call to authenticate a user */
-      // api.request('post', '/login', {username, password})
-      //   .then(response => {
-      //     this.toggleLoading()
-      //     var data = response.data
-      //     /* Checking if error object was returned from the server */
-      //     if (data.error) {
-      //       var errorName = data.error.name
-      //       if (errorName) {
-      //         this.response = errorName === 'InvalidCredentialsError'
-      //           ? 'Username/Password incorrect. Please try again.'
-      //           : errorName
-      //       } else {
-      //         this.response = data.error
-      //       }
-      //       return
-      //     }
-      //     /* Setting user in the state and caching record to the localStorage */
-      //     if (data.user) {
-      //       var token = 'Bearer ' + data.token
-      //       this.$store.commit('SET_USER', data.user)
-      //       this.$store.commit('SET_TOKEN', token)
-      //       if (window.localStorage) {
-      //         window.localStorage.setItem('user', JSON.stringify(data.user))
-      //         window.localStorage.setItem('token', token)
-      //       }
-      //       this.$router.push(data.redirect ? data.redirect : '/')
-      //     }
-      //   })
-      //   .catch(error => {
-      //     this.$store.commit('TOGGLE_LOADING')
-      //     console.log(error)
-      //     this.response = 'Server appears to be offline'
-      //     this.toggleLoading()
-      //   })
+    login () {
+      this.resetErrors()
+      let loginDetails = {username: this.username, password: this.password}
+      if (loginDetails.username === '' && loginDetails.password === '') {
+        this.errors.emptyFields = true
+        return
+      }
+      LoginService.login(loginDetails).then((response) => {
+        let token = response.token
+        localStorage.setItem('token', token)
+        localStorage.setItem('usr', response.user.username)
+        store.commit('LOGIN_USER')
+        router.push('/')
+      }).catch(() => {
+        this.errors.wrongFields = true
+        store.commit('LOGOUT_USER')
+      })
     },
-    toggleLoading () {
-      this.loading = (this.loading === '') ? 'loading' : ''
-    },
-    resetResponse () {
-      this.response = ''
+    resetErrors () {
+      this.errors.emptyFields = false
+      this.errors.wrongFields = false
     }
   }
 }
