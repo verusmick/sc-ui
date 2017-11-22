@@ -47,7 +47,7 @@ const routes = [
         component: Users,
         meta: {
           labelName: 'Usuarios',
-          description: 'Overview of environment'
+          description: 'Lista de usuarios'
         }
       },
       {

@@ -20,41 +20,9 @@ module.exports = [
       {
         type: 'item',
         icon: 'fa fa-circle-o',
-        name: 'Icons',
+        name: 'Transacciones',
         router: {
           name: 'Icons'
-        }
-      },
-      {
-        type: 'item',
-        icon: 'fa fa-circle-o',
-        name: 'Buttons',
-        router: {
-          name: 'Buttons'
-        }
-      },
-      {
-        type: 'item',
-        icon: 'fa fa-circle-o',
-        name: 'Sliders',
-        router: {
-          name: 'Sliders'
-        }
-      },
-      {
-        type: 'item',
-        icon: 'fa fa-circle-o',
-        name: 'Timeline',
-        router: {
-          name: 'Timeline'
-        }
-      },
-      {
-        type: 'item',
-        icon: 'fa fa-circle-o',
-        name: 'Modals',
-        router: {
-          name: 'Modals'
         }
       }
     ]
