@@ -16,7 +16,7 @@
               <span class="input-group-addon"><i class="fa fa-lock"></i></span>
               <input class="form-control" name="password" placeholder="Password" type="password" v-model="password">
             </div>
-            <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Submit</button>
+            <button type="submit" v-bind:class="'btn btn-primary btn-lg ' + loading">Entrar</button>
           </form>
 
           <!-- errors -->

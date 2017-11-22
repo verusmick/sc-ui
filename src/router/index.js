@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../vuex/store'
 import Hello from 'components/Hello.vue'
 import Sample from 'components/Sample.vue'
 import DashboardV1 from 'examples/Dashboard.v1.vue'
@@ -29,120 +30,132 @@ import AdvancedElements from 'pages/forms/AdvancedElements.vue'
 
 Vue.use(Router)
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/',
-      component: Dash,
-      meta: {requiresAuth: true},
-      children: [
-        {
-          path: '/users',
-          name: 'Users',
-          component: Users,
-          meta: {
-            labelName: 'Usuarios',
-            description: 'Overview of environment'
-          }
-        },
-        {
-          path: '/',
-          name: 'Hello',
-          component: Hello
-        },
-        {
-          path: '/sample',
-          name: 'Sample',
-          component: Sample
-        },
-        {
-          path: '/dashboard/v1',
-          name: 'DashboardV1',
-          component: DashboardV1
-        },
-        {
-          path: '/dashboard/v2',
-          name: 'DashboardV2',
-          component: DashboardV2
-        },
-        {
-          path: '/examples/infobox',
-          name: 'InfoBoxExample',
-          component: InfoBoxExample
-        },
-        {
-          path: '/examples/chart',
-          name: 'ChartExample',
-          component: ChartExample
-        },
-        {
-          path: '/examples/alert',
-          name: 'AlertExample',
-          component: AlertExample
-        },
-        {
-          path: '/examples/modal',
-          name: 'ModalExample',
-          component: ModalExample
-        },
-        {
-          path: '/examples/widgets',
-          name: 'WidgetsExample',
-          component: WidgetsExample
-        },
-        {
-          path: '/examples/api-example',
-          name: 'APIExample',
-          component: APIExample
-        },
-        {
-          path: '/ui-elements/general',
-          name: 'General',
-          component: General
-        },
-        {
-          path: '/ui-elements/icons',
-          name: 'Icons',
-          component: Icons
-        },
-        {
-          path: '/ui-elements/buttons',
-          name: 'Buttons',
-          component: Buttons
-        },
-        {
-          path: '/ui-elements/sliders',
-          name: 'Sliders',
-          component: Sliders
-        },
-        {
-          path: '/ui-elements/timeline',
-          name: 'Timeline',
-          component: Timeline
-        },
-        {
-          path: '/ui-elements/modals',
-          name: 'Modals',
-          component: Modals
-        },
-        {
-          path: '/forms/general-elements',
-          name: 'GeneralElements',
-          component: GeneralElements
-        },
-        {
-          path: '/forms/advanced-elements',
-          name: 'AdvancedElements',
-          component: AdvancedElements
+const routes = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/',
+    component: Dash,
+    meta: {requiresAuth: true},
+    children: [
+      {
+        path: '/users',
+        name: 'Users',
+        component: Users,
+        meta: {
+          labelName: 'Usuarios',
+          description: 'Overview of environment'
         }
-      ]
-    }
-  ],
-  linkActiveClass: 'active'
+      },
+      {
+        path: '/',
+        name: 'Hello',
+        component: Hello
+      },
+      {
+        path: '/sample',
+        name: 'Sample',
+        component: Sample
+      },
+      {
+        path: '/dashboard/v1',
+        name: 'DashboardV1',
+        component: DashboardV1
+      },
+      {
+        path: '/dashboard/v2',
+        name: 'DashboardV2',
+        component: DashboardV2
+      },
+      {
+        path: '/examples/infobox',
+        name: 'InfoBoxExample',
+        component: InfoBoxExample
+      },
+      {
+        path: '/examples/chart',
+        name: 'ChartExample',
+        component: ChartExample
+      },
+      {
+        path: '/examples/alert',
+        name: 'AlertExample',
+        component: AlertExample
+      },
+      {
+        path: '/examples/modal',
+        name: 'ModalExample',
+        component: ModalExample
+      },
+      {
+        path: '/examples/widgets',
+        name: 'WidgetsExample',
+        component: WidgetsExample
+      },
+      {
+        path: '/examples/api-example',
+        name: 'APIExample',
+        component: APIExample
+      },
+      {
+        path: '/ui-elements/general',
+        name: 'General',
+        component: General
+      },
+      {
+        path: '/ui-elements/icons',
+        name: 'Icons',
+        component: Icons
+      },
+      {
+        path: '/ui-elements/buttons',
+        name: 'Buttons',
+        component: Buttons
+      },
+      {
+        path: '/ui-elements/sliders',
+        name: 'Sliders',
+        component: Sliders
+      },
+      {
+        path: '/ui-elements/timeline',
+        name: 'Timeline',
+        component: Timeline
+      },
+      {
+        path: '/ui-elements/modals',
+        name: 'Modals',
+        component: Modals
+      },
+      {
+        path: '/forms/general-elements',
+        name: 'GeneralElements',
+        component: GeneralElements
+      },
+      {
+        path: '/forms/advanced-elements',
+        name: 'AdvancedElements',
+        component: AdvancedElements
+      }
+    ]
+  }
+]
+
+const router = new Router({routes, linkActiveClass: 'active'})
+
+// Some middleware to help us ensure the user is authenticated.
+router.beforeEach((to, from, next) => {
+  // if (to.matched.some(record => record.meta.requiresAuth) && (!router.app.$store.state.token || router.app.$store.state.token === 'null')) {
+  // console.log('--->', record.meta.requiresAuth)
+  if (to.matched.some(record => record.meta.requiresAuth) && !store.state.isLogged && !localStorage.getItem('token')) {
+    window.console.log('Not authenticated')
+    next({name: 'Login'})
+  } else {
+    next()
+  }
 })
+
+export default router
