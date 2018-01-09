@@ -37,7 +37,7 @@ module.exports = function () {
 
 function generateFakeObject (TARGETCLASS = '', count = 10) {
   if (typeof TARGETCLASS !== 'function') {
-    console.error('클래스가 아님')
+    console.error('')
     return []
   }
   let result = []

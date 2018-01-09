@@ -31,7 +31,6 @@ Build for production with minification
 
 + npm run build
 
-
 Creating build for production and view the bundle analyzer report
 -----------------------------------------------------------------
 + npm run build --report
