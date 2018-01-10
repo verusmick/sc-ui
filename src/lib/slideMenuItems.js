@@ -25,7 +25,7 @@ module.exports = [
         icon: 'fa fa-circle-o',
         name: 'Cuentas',
         router: {
-          name: 'General'
+          name: 'Users'
         }
       },
       {
@@ -33,7 +33,7 @@ module.exports = [
         icon: 'fa fa-circle-o',
         name: 'Transacciones',
         router: {
-          name: 'Icons'
+          name: 'Users'
         }
       }
     ]

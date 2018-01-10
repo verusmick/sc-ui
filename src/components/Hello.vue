@@ -4,7 +4,7 @@
       <img class="logo" src="../assets/logoTextura.png">
     </div>
     <div>
-      <h1>Bienvenidos - Demo list</h1>
+      <h1>Bienvenidos</h1>
     </div>
   </div>
 </template>
